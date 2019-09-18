@@ -65,9 +65,7 @@ public class TcpServer {
          .childHandler(new ChannelInitializer<SocketChannel>() {
             @Override
             protected void initChannel(SocketChannel ch) {
-                 ch.pipeline().addLast(new ReadTimeoutHandler(60))
-                              .addLast(new WriteTimeoutHandler(60))
-                              .addLast(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 0, 8, 0, 8))
+                 ch.pipeline().addLast(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 0, 8, 0, 8))
                               .addLast(new LengthFieldPrepender(8))
                               .addLast(new SocketFrameHandler());
              }
